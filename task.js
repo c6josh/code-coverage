@@ -86,6 +86,7 @@ module.exports = {
       return null
     }
 
+    const excludeAfterRemap = nycOptions['exclude-after-remap'] || true
     const reportDir = nycOptions['report-dir'] || './coverage'
     const reporter = nycOptions['reporter'] || ['lcov', 'clover', 'json']
     const reporters = Array.isArray(reporter)
@@ -99,7 +100,9 @@ module.exports = {
       '--report-dir',
       reportDir,
       '--temp-dir',
-      coverageFolder
+      coverageFolder,
+      '--exclude-after-remap',
+      excludeAfterRemap
     ].concat(reporters)
     debug(
       'saving coverage report using command: "%s %s"',
